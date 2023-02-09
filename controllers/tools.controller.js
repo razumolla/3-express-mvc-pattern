@@ -1,4 +1,4 @@
-const tools=[
+let tools=[
     {id:1, name: "razu"},
     {id:2, name: "saju"},
     {id:3, name: "maju"},
@@ -19,9 +19,9 @@ module.exports.getAllTools= (req,res,next)=>{
 }
 
 module.exports.saveATools= (req,res)=>{
-    console.log(req.body);
-
-    res.send("tools saved")
+    console.log(req.query);
+    tools.push(req.body);
+    res.send(tools)
 }
 
 module.exports.getToolDetail= (req,res)=>{
@@ -30,3 +30,24 @@ module.exports.getToolDetail= (req,res)=>{
     const foundTool=tools.filter(tool=> tool.id == id );
     res.send(foundTool)
 }
+
+module.exports.updateTool= (req,res)=>{
+    // const newData=req.body;
+    const {id}=req.params;
+    const filter ={ _id:id }
+
+    const newData= tools.find(tool=> tool.id=== Number(id));
+    newData.id=id;
+    newData.name=req.body.name;
+    
+    res.send(newData)
+}
+
+module.exports.deleteTool= (req,res)=>{
+    const {id}=req.params;
+    const filter ={ _id:id }
+
+    tools = tools.filter(tool=> tool.id !== Number(id));
+    res.send(tools)
+}
+
