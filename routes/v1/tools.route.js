@@ -51,6 +51,6 @@ router
    */
     .post(toolsControllers.saveATools)
 
-    router.route("/:id").get(viewCount,limiter, toolsControllers.getToolDetail)
+router.route("/:id").get(viewCount,limiter, toolsControllers.getToolDetail)
 
 module.exports =router; //default export
