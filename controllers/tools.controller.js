@@ -10,3 +10,7 @@ module.exports.getAllTools= (req,res,next)=>{
 module.exports.saveATools= (req,res)=>{
     res.send("tools post")
 }
+
+module.exports.getToolDetail= (req,res)=>{
+    res.send("tools details found")
+}

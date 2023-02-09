@@ -9,15 +9,21 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const nodemailer = require("nodemailer");
 const dbConnect = require("./utils/dbConnect"); //for database
 const toolsRouters =require("./routes/v1/tools.route");
+const viewCount = require("./middleware/viewCount");
 
 app.use(cors()); // Give client side access
 app.use(express.json()); //parse tha json body from client post method
 
+// app.use(viewCount);
+
+
+// Apply the rate limiting middleware to all requests
+// app.use(limiter)
+
+
 
 // je route e mail send korar projojon hobe sei route e import korbo
-
 dbConnect(); //for database
-
 
 app.use('/api/v1/tools',toolsRouters)
 
