@@ -13,6 +13,8 @@ const viewCount = require("./middleware/viewCount");
 
 app.use(cors()); // Give client side access
 app.use(express.json()); //parse tha json body from client post method
+app.use(express.static("public")); // you can access any file from public folder
+app.set("view engine", "ejs");
 
 // app.use(viewCount);
 
@@ -205,7 +207,14 @@ run().catch(console.dir);
 
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  // res.send("Hello World");
+  // res.sendFile(__dirname + "/public/test.html");
+  res.render("home.ejs",{
+    id:2,
+    user: {
+      name:"test"
+    }
+  })
 });
 
 app.all("*",(req,res)=>{
